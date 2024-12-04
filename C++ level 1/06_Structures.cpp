@@ -1,127 +1,151 @@
-
-
 #include <iostream>
 #include <string>
 using namespace std;
 
+// Struct to hold user's basic information
 struct UserInfo
 {
-
-	string FullName;
-	string Sex;
-	unsigned short Age;
+	string FullName;	// Full name of the user
+	string Sex;			// User's gender
+	unsigned short Age; // User's age
 };
+
+// Struct to hold user's contact details
 struct UserContactInfo
 {
-
-	string Email;
-	string City;
-	unsigned int Phone;
+	string Email;		// Email address of the user
+	string City;		// City where the user lives
+	unsigned int Phone; // Phone number of the user
 };
+
+// Struct to hold subscription date and validity
 struct SubDate
 {
-
-	int day;
-	int month;
-	int year;
-	int ValidityPeriod;
+	int day;			// Day of subscription
+	int month;			// Month of subscription
+	int year;			// Year of subscription
+	int ValidityPeriod; // Validity period of the subscription (in years)
 };
+
+// Struct to hold subscription type details
 struct SubType
 {
-
-	string CourseArea;
-	string DomainOfSpecialzation;
+	string CourseArea;			   // Area of the course subscribed to
+	string DomainOfSpecialization; // Domain of specialization in the course
 };
+
+// Struct to hold complete subscription information
 struct UserSubscriptionInfo
 {
-
-	SubDate UserSubeDate;
-	SubType UserSubeType;
+	SubDate UserSubDate; // Subscription date information
+	SubType UserSubType; // Subscription type details
 };
+
+// Main struct to combine all user information
 struct User
 {
-	UserInfo Information;
-	UserContactInfo Contact;
-	UserSubscriptionInfo Subscription;
+	UserInfo Information;			   // Basic user information
+	UserContactInfo Contact;		   // Contact details
+	UserSubscriptionInfo Subscription; // Subscription information
 };
 
-void EterInfo(User &Persson)
+// Function to enter user information
+void EnterInfo(User &Person)
 {
-
 	cout << "============================================\n";
-	cout << " Enter this informatuon :\n";
+	cout << "Enter this information:\n";
 
-	// user info :
-	cout << " Full name : ";
-	getline(cin, Persson.Information.FullName);
+	// Input basic user information
+	cout << "Full name: ";
+	cin.ignore(); // Clear the input buffer
+	getline(cin, Person.Information.FullName);
 
-	cout << " Age : ";
-	cin >> Persson.Information.Age;
+	cout << "Age: ";
+	cin >> Person.Information.Age;
 
-	cout << " sex : ";
-	cin >> Persson.Information.Sex;
+	cout << "Sex: ";
+	cin >> Person.Information.Sex;
 
-	// user contact info :
+	// Input user's contact details
+	cout << "Email: ";
+	cin.ignore(); // Clear the input buffer before using getline
+	getline(cin, Person.Contact.Email);
 
-	cout << " Email : ";
-	cin >> Persson.Contact.Email;
+	cout << "Phone: ";
+	cin >> Person.Contact.Phone;
 
-	cout << " Phone : ";
-	cin >> Persson.Contact.Phone;
+	cout << "City: ";
+	cin.ignore(); // Clear the input buffer before using getline
+	getline(cin, Person.Contact.City);
 
-	cout << " City : ";
-	cin >> Persson.Contact.City;
+	// Input subscription details
+	cout << "Day of Subscription: ";
+	cin >> Person.Subscription.UserSubDate.day;
 
-	// User Subscription Info
+	cout << "Month of Subscription: ";
+	cin >> Person.Subscription.UserSubDate.month;
 
-	cout << " Day of Subscription : ";
-	cin >> Persson.Subscription.UserSubeDate.day;
+	cout << "Year of Subscription: ";
+	cin >> Person.Subscription.UserSubDate.year;
 
-	cout << " month of Subscription : ";
-	cin >> Persson.Subscription.UserSubeDate.month;
+	cout << "Validity Period (years): ";
+	cin >> Person.Subscription.UserSubDate.ValidityPeriod;
 
-	cout << " Year of Subscription : ";
-	cin >> Persson.Subscription.UserSubeDate.year;
+	cout << "Course Area: ";
+	cin.ignore(); // Clear the input buffer before using getline
+	getline(cin, Person.Subscription.UserSubType.CourseArea);
 
-	cout << " Validity Period : ";
-	cin >> Persson.Subscription.UserSubeDate.ValidityPeriod;
+	cout << "Domain Of Specialization: ";
+	getline(cin, Person.Subscription.UserSubType.DomainOfSpecialization);
 
-	cout << " Course Area : ";
-	cin >> Persson.Subscription.UserSubeType.CourseArea;
-
-	cout << " Domain Of Specialzation : ";
-	cin >> Persson.Subscription.UserSubeType.DomainOfSpecialzation;
 	cout << "============================================\n\n";
 }
-void PrintInfo(User Persson)
+
+// Function to print user information
+void PrintInfo(const User &Person)
 {
+	cout << "______________________________________________________\n";
+	cout << "__[ User Information ]________________________________\n\n";
+
+	// Display basic user information
+	cout << "Full name: " << Person.Information.FullName << endl;
+	cout << "Age: " << Person.Information.Age << endl;
+	cout << "Sex: " << Person.Information.Sex << endl;
+
+	// Display contact details
+	cout << "Email: " << Person.Contact.Email << endl;
+	cout << "Phone: " << Person.Contact.Phone << endl;
+	cout << "City: " << Person.Contact.City << endl;
+
+	// Display subscription details
+	cout << "Subscription Date: "
+		<< Person.Subscription.UserSubDate.day << "/"
+		<< Person.Subscription.UserSubDate.month << "/"
+		<< Person.Subscription.UserSubDate.year << endl;
+
+	cout << "Validity Period: " << Person.Subscription.UserSubDate.ValidityPeriod << " years" << endl;
+	cout << "Course Area: " << Person.Subscription.UserSubType.CourseArea << endl;
+	cout << "Domain Of Specialization: " << Person.Subscription.UserSubType.DomainOfSpecialization << endl;
 
 	cout << "______________________________________________________\n";
-	cout << "__[ Information Of user ]_____________________________\n";
-
-	cout << " \n";
-
-	cout << " Full name : " << Persson.Information.FullName << endl;
-	cout << " Age : " << Persson.Information.Age << endl;
-	cout << " sex : " << Persson.Information.Sex << endl;
-	cout << " Email : " << Persson.Contact.Email << endl;
-	cout << " Phone : " << Persson.Contact.Phone << endl;
-	cout << " City : " << Persson.Contact.City << endl;
-	cout << " Subscription Date : " << Persson.Subscription.UserSubeDate.month << "/" << Persson.Subscription.UserSubeDate.day << "/" << Persson.Subscription.UserSubeDate.year << endl;
-	cout << " Validity Period : " << Persson.Subscription.UserSubeDate.ValidityPeriod << " years" << endl;
-	cout << " Course Area : " << Persson.Subscription.UserSubeType.CourseArea << endl;
-	cout << " Domain Of Specialzation : " << Persson.Subscription.UserSubeType.DomainOfSpecialzation << endl;
 }
 
 int main()
 {
-	User user[2]; // Array whith structures
+	const int numUsers = 2; // Number of users to handle
+	User user[numUsers];	// Array to store information for multiple users
 
-	EterInfo(user[0]);
-	EterInfo(user[1]);
+	// Collect information for each user
+	for (int i = 0; i < numUsers; i++)
+	{
+		EnterInfo(user[i]);
+	}
 
-	PrintInfo(user[0]);
-	PrintInfo(user[1]);
+	// Display information for each user
+	for (int i = 0; i < numUsers; i++)
+	{
+		PrintInfo(user[i]);
+	}
 
 	return 0;
 }
